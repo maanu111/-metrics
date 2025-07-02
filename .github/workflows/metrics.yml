@@ -22,19 +22,9 @@ jobs:
           
           # Theme and appearance
           config_timezone: Asia/Kolkata
-          config_display: large
+          config_display: dark
           config_animations: yes
           config_padding: 0, 8 + 11%
-          
-          # Choose a theme (uncomment one):
-          # config_theme: default
-          # config_theme: dark
-          # config_theme: github-dark
-          # config_theme: monokai
-          # config_theme: solarized-dark
-          # config_theme: nord
-          # config_theme: dracula
-          config_theme: dracula
           
           # Plugin: Most used languages
           plugin_languages: yes

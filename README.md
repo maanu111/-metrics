@@ -1,0 +1,110 @@
+name: Metrics
+on:
+  # Schedule daily updates
+schedule: [{cron: "0 0 * * *"}]  
+  workflow_dispatch:
+  # Update on push to main
+  push: {branches: ["master", "main"]}
+
+jobs:
+  github-metrics:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: lowlighter/metrics@latest
+        with:
+          token: ${{ secrets.METRICS_TOKEN }}
+          
+          # Basic configuration
+          user: ${{ github.repository_owner }}
+          template: classic
+          base: header, activity, community, repositories, metadata
+          
+          # Theme and appearance
+          config_timezone: Asia/Kolkata
+          config_display: large
+          config_animations: yes
+          config_padding: 0, 8 + 11%
+          
+          # Choose a theme (uncomment one):
+          # config_theme: default
+          # config_theme: dark
+          # config_theme: github-dark
+          # config_theme: monokai
+          # config_theme: solarized-dark
+          # config_theme: nord
+          # config_theme: dracula
+          config_theme: github-dark
+          
+          # Plugin: Most used languages
+          plugin_languages: yes
+          plugin_languages_analysis_timeout: 15
+          plugin_languages_categories: markup, programming
+          plugin_languages_colors: github
+          plugin_languages_limit: 8
+          plugin_languages_recent_categories: markup, programming
+          plugin_languages_recent_days: 14
+          plugin_languages_recent_load: 300
+          plugin_languages_sections: most-used
+          plugin_languages_threshold: 0%
+          
+          # Plugin: Activity
+          plugin_activity: yes
+          plugin_activity_days: 14
+          plugin_activity_filter: all
+          plugin_activity_limit: 5
+          plugin_activity_load: 300
+          plugin_activity_visibility: all
+          
+          # Plugin: Commit calendar
+          plugin_calendar: yes
+          plugin_calendar_limit: 1
+          
+          # Plugin: Coding habits and activity
+          plugin_habits: yes
+          plugin_habits_charts: yes
+          plugin_habits_days: 14
+          plugin_habits_facts: yes
+          plugin_habits_from: 200
+          
+          # Plugin: Notable contributions
+          plugin_notable: yes
+          plugin_notable_from: organization
+          plugin_notable_types: commit
+          
+          # Plugin: Achievements
+          plugin_achievements: yes
+          plugin_achievements_threshold: C
+          plugin_achievements_secrets: yes
+          plugin_achievements_display: detailed
+          plugin_achievements_limit: 0
+          
+          # Plugin: Lines of code changed
+          plugin_lines: yes
+          plugin_lines_history_limit: 1
+          plugin_lines_repositories_limit: 4
+          plugin_lines_sections: base
+          
+          # Plugin: Follow-up issues and PRs
+          plugin_followup: yes
+          plugin_followup_sections: repositories
+          
+          # Plugin: Reactions
+          plugin_reactions: yes
+          plugin_reactions_limit: 200
+          plugin_reactions_limit_issues: 100
+          plugin_reactions_limit_discussions: 100
+          plugin_reactions_limit_discussions_comments: 100
+          plugin_reactions_days: 14
+          plugin_reactions_display: absolute
+          
+          # Plugin: People you follow/followers
+          plugin_people: yes
+          plugin_people_limit: 24
+          plugin_people_size: 28
+          plugin_people_types: followers, following
+          
+          # Plugin: Stars
+          plugin_stars: yes
+          plugin_stars_limit: 4

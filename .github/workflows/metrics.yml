@@ -34,7 +34,7 @@ jobs:
           # config_theme: solarized-dark
           # config_theme: nord
           # config_theme: dracula
-          config_theme: github-dark
+          config_theme: dracula
           
           # Plugin: Most used languages
           plugin_languages: yes
